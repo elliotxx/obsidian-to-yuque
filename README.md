@@ -1,96 +1,80 @@
-# Obsidian Sample Plugin
+![obsidian-to-yuque](https://socialify.git.ci/elliotxx/obsidian-to-yuque/image?description=1&font=Raleway&issues=1&language=1&name=1&owner=1&pattern=Circuit%20Board&pulls=1&stargazers=1&theme=Auto)
 
-This is a sample plugin for Obsidian (https://obsidian.md).
+# Obsidian to Yuque
 
-This project uses TypeScript to provide type checking and documentation.
-The repo depends on the latest plugin API (obsidian.d.ts) in TypeScript Definition format, which contains TSDoc comments describing what it does.
+一个用于将 Obsidian 笔记发布到语雀的插件。
 
-**Note:** The Obsidian API is still in early alpha and is subject to change at any time!
+## 功能特性
 
-This sample plugin demonstrates some of the basic functionality the plugin API can do.
-- Adds a ribbon icon, which shows a Notice when clicked.
-- Adds a command "Open Sample Modal" which opens a Modal.
-- Adds a plugin setting tab to the settings page.
-- Registers a global click event and output 'click' to the console.
-- Registers a global interval which logs 'setInterval' to the console.
+- ✨ 支持一键将当前笔记发布到语雀
+- 🔑 支持配置语雀 Token 和知识库路径
+- 🔗 发布后自动显示语雀文档链接
+- 📝 保持 Markdown 格式不变
 
-## First time developing plugins?
+## 安装方法
 
-Quick starting guide for new plugin devs:
+### 从 Obsidian 插件市场安装
 
-- Check if [someone already developed a plugin for what you want](https://obsidian.md/plugins)! There might be an existing plugin similar enough that you can partner up with.
-- Make a copy of this repo as a template with the "Use this template" button (login to GitHub if you don't see it).
-- Clone your repo to a local development folder. For convenience, you can place this folder in your `.obsidian/plugins/your-plugin-name` folder.
-- Install NodeJS, then run `npm i` in the command line under your repo folder.
-- Run `npm run dev` to compile your plugin from `main.ts` to `main.js`.
-- Make changes to `main.ts` (or create new `.ts` files). Those changes should be automatically compiled into `main.js`.
-- Reload Obsidian to load the new version of your plugin.
-- Enable plugin in settings window.
-- For updates to the Obsidian API run `npm update` in the command line under your repo folder.
+1. 打开 Obsidian 设置
+2. 进入 `第三方插件` 
+3. 确保安全模式已关闭
+4. 点击 `浏览` 按钮
+5. 搜索 "Obsidian to Yuque"
+6. 点击安装
 
-## Releasing new releases
+### 手动安装
 
-- Update your `manifest.json` with your new version number, such as `1.0.1`, and the minimum Obsidian version required for your latest release.
-- Update your `versions.json` file with `"new-plugin-version": "minimum-obsidian-version"` so older versions of Obsidian can download an older version of your plugin that's compatible.
-- Create new GitHub release using your new version number as the "Tag version". Use the exact version number, don't include a prefix `v`. See here for an example: https://github.com/obsidianmd/obsidian-sample-plugin/releases
-- Upload the files `manifest.json`, `main.js`, `styles.css` as binary attachments. Note: The manifest.json file must be in two places, first the root path of your repository and also in the release.
-- Publish the release.
+1. 从 [Releases](https://github.com/elliotxx/obsidian-to-yuque/releases) 下载最新版本
+2. 解压到你的 vault 的插件目录: `<vault>/.obsidian/plugins/obsidian-to-yuque`
+3. 重新加载 Obsidian
+4. 在设置中启用插件
 
-> You can simplify the version bump process by running `npm version patch`, `npm version minor` or `npm version major` after updating `minAppVersion` manually in `manifest.json`.
-> The command will bump version in `manifest.json` and `package.json`, and add the entry for the new version to `versions.json`
+## 配置说明
 
-## Adding your plugin to the community plugin list
+### 获取语雀 Token
 
-- Check the [plugin guidelines](https://docs.obsidian.md/Plugins/Releasing/Plugin+guidelines).
-- Publish an initial version.
-- Make sure you have a `README.md` file in the root of your repo.
-- Make a pull request at https://github.com/obsidianmd/obsidian-releases to add your plugin.
+1. 登录[语雀](https://www.yuque.com/)
+2. 点击头像 -> 设置 -> Token
+3. 点击 `新建 Token`
+4. 填写名称，选择权限（至少需要 `读取、写入知识库` 权限）
+5. 创建并复制生成的 Token
 
-## How to use
+### 配置插件
 
-- Clone this repo.
-- Make sure your NodeJS is at least v16 (`node --version`).
-- `npm i` or `yarn` to install dependencies.
-- `npm run dev` to start compilation in watch mode.
+1. 在 Obsidian 中打开设置
+2. 找到 `Obsidian to Yuque` 插件设置
+3. 填入以下信息：
+   - 语雀 Token：刚才获取的 Token
+   - 知识库路径：要发布到的知识库路径（格式：username/repo）
 
-## Manually installing the plugin
+## 使用方法
 
-- Copy over `main.js`, `styles.css`, `manifest.json` to your vault `VaultFolder/.obsidian/plugins/your-plugin-id/`.
+1. 打开要发布的笔记
+2. 使用以下任一方式发布：
+   - 使用命令面板（Ctrl/Cmd + P），输入 "发布到语雀"
+   - 使用快捷键（可在设置中自定义）
 
-## Improve code quality with eslint (optional)
-- [ESLint](https://eslint.org/) is a tool that analyzes your code to quickly find problems. You can run ESLint against your plugin to find common bugs and ways to improve your code. 
-- To use eslint with this project, make sure to install eslint from terminal:
-  - `npm install -g eslint`
-- To use eslint to analyze this project use this command:
-  - `eslint main.ts`
-  - eslint will then create a report with suggestions for code improvement by file and line number.
-- If your source code is in a folder, such as `src`, you can use eslint with this command to analyze all files in that folder:
-  - `eslint .\src\`
+发布成功后会显示语雀文档链接。
 
-## Funding URL
-
-You can include funding URLs where people who use your plugin can financially support it.
-
-The simple way is to set the `fundingUrl` field to your link in your `manifest.json` file:
-
-```json
-{
-    "fundingUrl": "https://buymeacoffee.com"
-}
+## 开发
+```bash
+# 克隆项目
+git clone https://github.com/elliotxx/obsidian-to-yuque.git
+# 安装依赖
+npm install
+# 开发模式
+npm run dev
+# 构建
+npm run build
 ```
 
-If you have multiple URLs, you can also do:
+## 问题反馈
 
-```json
-{
-    "fundingUrl": {
-        "Buy Me a Coffee": "https://buymeacoffee.com",
-        "GitHub Sponsor": "https://github.com/sponsors",
-        "Patreon": "https://www.patreon.com/"
-    }
-}
-```
+如果你在使用过程中遇到任何问题，或者有功能建议，欢迎：
 
-## API Documentation
+1. 提交 [Issue](https://github.com/elliotxx/obsidian-to-yuque/issues)
+2. 提交 [Pull Request](https://github.com/elliotxx/obsidian-to-yuque/pulls)
 
-See https://github.com/obsidianmd/obsidian-api
+## 许可证
+
+[MIT License](LICENSE)
